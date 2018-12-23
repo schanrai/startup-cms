@@ -3,8 +3,10 @@
 Specs:
 - [x] Use Sinatra to build the app
 - I have installed the Sinatra gem and am using it to build my app.
-- [ ] Use ActiveRecord for storing information in a database
-- [ ] Include more than one model class (e.g. User, Post, Category)
+- [x] Use ActiveRecord for storing information in a database
+- All models are inheriting from ActiveRecord Base, migrations have been created and run.
+- [x] Include more than one model class (e.g. User, Post, Category)
+I am using two model classes - User and StartupProfile
 - [ ] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
 - [ ] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
 - [ ] Include user accounts with unique login attribute (username or email)

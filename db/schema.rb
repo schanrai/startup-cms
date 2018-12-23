@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181222031407) do
+ActiveRecord::Schema.define(version: 20181223205006) do
 
   create_table "startup_profiles", force: :cascade do |t|
     t.string  "name"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20181222031407) do
     t.string "email"
     t.string "password_digest"
     t.text   "mentor_description"
-    t.string "website"
     t.string "linked_in"
     t.string "location"
   end
