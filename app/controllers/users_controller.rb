@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
   get '/login' do
-    erb :'/users/login'
+    if
+      !logged_in?
+      erb :'/users/login'
+    else
+      #flash message needed here to acknowledge you are logged in
+      redirect '/startups'
+    end
   end
 
   post '/login' do
@@ -14,6 +20,10 @@ class UsersController < ApplicationController
       #flash message needed here on faiure
       redirect '/login'
     end
+  end
+
+  get '/signup' do
+    erb :'/users/signup'
   end
 
 
