@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   get '/login' do
-    if
-      !logged_in?
+    if !logged_in?
       erb :'/users/login'
     else
       #flash message needed here to acknowledge you are logged in
@@ -13,8 +12,7 @@ class UsersController < ApplicationController
 
   post '/login' do
     user = User.find_by(email: params[:email])
-    if
-      user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password])
       session[:id] = user.id
       redirect '/startups'
     else
@@ -41,7 +39,7 @@ class UsersController < ApplicationController
       session[:id] = @user.id
         if !!params[:yes]
           #flash welcome message needed here to acknowledge you are signed up
-          redirect "/mentor/new"
+          redirect "/mentors/new"
         else
           #flash welcome message needed here to acknowledge you are signed up
           redirect "/startups"

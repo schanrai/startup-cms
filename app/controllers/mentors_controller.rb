@@ -5,6 +5,14 @@ class MentorsController < ApplicationController
     erb :'/mentors/index'
   end
 
+  get '/mentors/new' do
+    @user = current_user
+    if !@user.blank?
+      erb :'/mentors/new'
+    else
+      redirect '/'
+    end
+  end
 
 
 end

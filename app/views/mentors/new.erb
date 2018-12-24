@@ -1,0 +1,22 @@
+<h2>Create Mentor Profile</h2>
+
+<p><%= @user.name %>, create your mentor profile below:</p>
+
+<form action="/mentors" method="post">
+
+<label>About Me: </label>
+<textarea type="text" name="mentor_description" rows="5" cols="30">
+</textarea>
+
+<br></br>
+<label>Location: </label>
+<input type="text" name="location" value="">
+
+<br></br>
+<label>Linked In: </label>
+<input type="text" name="linked_in" value="">
+<br></br>
+
+<input type="submit" value="submit">
+
+</form>
