@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
-  #validates :email, uniqueness: true
-  #validates_uniqueness_of :email, message: 'a user already exists with this email'
 
   has_many :startup_profiles
   has_many :mentorships, class_name: "StartupProfile", foreign_key: :mentor_id, inverse_of: :mentor
