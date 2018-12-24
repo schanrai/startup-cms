@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   post '/login' do
     user = User.find_by(email: params[:email])
     if
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   get '/signup' do
     if
       !logged_in?
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
       redirect '/startups'
     end
   end
+
 
   post '/signup' do
       @user = User.new(name: params[:name],email: params[:email],password: params[:password])
@@ -50,10 +53,12 @@ class UsersController < ApplicationController
       end
   end
 
+
   get '/logout' do
     session.clear
     redirect '/'
   end
+
 
 
 end

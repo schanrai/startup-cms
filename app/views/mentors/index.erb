@@ -1,0 +1,7 @@
+<h1>Mentors Index</h1>
+
+<p><% @users.find_all do |u|  %>
+<% if !!u.mentor_description %>
+<a href="/mentors/<%= u.id %>"><%=u.name%></a><br>
+<% end %>
+<% end %></p>
