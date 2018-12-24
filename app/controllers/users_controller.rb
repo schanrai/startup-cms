@@ -27,6 +27,7 @@ class UsersController < ApplicationController
       !logged_in?
       erb :'/users/signup'
     else
+      #flash message needed here to acknowledge you are logged in
       redirect '/startups'
     end
   end
@@ -36,19 +37,23 @@ class UsersController < ApplicationController
       if @user.save
       session[:id] = @user.id
         if !!params[:yes]
+          #flash welcome message needed here to acknowledge you are signed up
           redirect "/mentor/new"
         else
+          #flash welcome message needed here to acknowledge you are signed up
           redirect "/startups"
         end
       else
       #flash message about signup credentials being invalid, try again
-      #what about if user already exists?
+      #what about if user email already exists?
       redirect '/signup'
       end
   end
 
-
-
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end
 
 
 end
