@@ -1,0 +1,29 @@
+<h2>Edit Mentor Profile</h2>
+
+<p><%= @user.name %>, edit your mentor profile below:</p>
+
+<form action="/mentors/<%=@user.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+
+<label>About Me: </label>
+<textarea type="text" name="mentor_description" rows="5" cols="50">
+<%= @user.mentor_description %>
+</textarea>
+
+<br></br>
+<label>Full Name: </label>
+<input type="text" name="name" value="<%=@user.name %>">
+
+
+<br></br>
+<label>Location: </label>
+<input type="text" name="location" value="<%=@user.location %>">
+
+<br></br>
+<label>Linked In: </label>
+<input type="text" name="linked_in" value="<%=@user.linked_in %>">
+<br></br>
+
+<input type="submit" value="submit">
+
+</form>
