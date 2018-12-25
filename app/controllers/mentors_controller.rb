@@ -29,7 +29,12 @@ class MentorsController < ApplicationController
     end
   end
 
+  get '/mentors/:id' do
+    @mentor = User.find(params[:id])
+    erb :'/mentors/show'
+  end
 
+  
 
 private
 
