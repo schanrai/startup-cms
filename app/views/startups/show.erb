@@ -16,10 +16,29 @@
 <p><a href="<%= @startup.website %>" target="_blank"><%= @startup.website %></a></p>
 <br>
 
+<% if has_mentor?(@startup) %>
+
+<h3>Mentor:</h3>
+
+
+<p><a href="/mentors/<%= @startup.mentor_id %>" target="_blank"><%= @startup.mentor.name %></a></p>
+<br>
+<% else %>
+
 <h3>Need Help With:</h3>
 <p><%= @startup.help_needed %></p>
-<br>
+
+
+
+<form action="/startups/<%= @startup.id %>/addmentor" method="post">
+   <input type="hidden" name="mentor_id" value="<%= @user.id %>" />
+
+   <input type="submit" value="Mentor this startup">
+</form>
 <br><br>
+<!--Button to elect to mentor this startup - reloads or redirects back to this page -->
+
+<% end %>
 
 <% if logged_in? %>
   <a href="/startups/<%= @startup.id %>/edit">Edit Startup Profile</a>

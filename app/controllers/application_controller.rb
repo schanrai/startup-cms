@@ -14,10 +14,10 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+
     def logged_in?
       !!session[:id]
     end
-
 
     def current_user
     @current_user ||= User.find(session[:id])
@@ -26,6 +26,14 @@ class ApplicationController < Sinatra::Base
 
     def authorized_to_edit?(id)
       id.to_i == current_user.id
+    end
+
+    def has_mentor?(startup)
+      !!startup.mentor_id
+    end
+
+    def current_startup(id)
+      @current_startup ||= StartupProfile.find(id)
     end
 
 
