@@ -1,13 +1,24 @@
-<h2><%=@mentor.name%></h2>
+<h2><%=@user.name%></h2>
 
 <h3>About Me:</h3>
-<p><%= @mentor.mentor_description %></p>
+<p><%= @user.mentor_description %></p>
 <br>
 
 <h3>Location:</h3>
-<p><%= @mentor.location %></p>
+<p><%= @user.location %></p>
 <br>
 
 <h3>Linked In:</h3>
-<p><a href="<%= @mentor.linked_in %>" target="_blank"><%= @mentor.linked_in %></a></p>
+<p><a href="<%= @user.linked_in %>" target="_blank"><%= @user.linked_in %></a></p>
 <br>
+<br><br>
+
+<% if logged_in? %>
+  <a href="/mentors/<%= @user.id %>/edit">Edit Mentor Profile</a>
+  <br><br>
+
+
+    <!-- Link to Logout -->
+
+
+<% end %>

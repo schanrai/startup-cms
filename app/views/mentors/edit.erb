@@ -27,3 +27,17 @@
 <input type="submit" value="submit">
 
 </form>
+
+<br><br>
+
+<a href="/mentor/<%= @user.id %>">View Mentor Profile</a>
+<br><br>
+
+<% if authorized_to_edit?(@user.id) %>
+<!-- they won't see the delete link unless they are the owner-->
+  <form class="" action="/mentors/<%= @user.id %>" method="post">
+
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete this profile">
+  </form>
+<% end %>

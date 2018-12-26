@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
       !!session[:id]
     end
 
+
     def current_user
     @current_user ||= User.find(session[:id])
     #memoization
@@ -26,6 +27,7 @@ class ApplicationController < Sinatra::Base
     def authorized_to_edit?(id)
       id.to_i == current_user.id
     end
+
 
   end
 

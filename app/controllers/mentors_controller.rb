@@ -2,7 +2,7 @@ class MentorsController < ApplicationController
 
 
   get '/mentors' do
-    set_user
+    @user = current_user
     @users = User.all
     erb :'/mentors/index'
   end
@@ -20,8 +20,9 @@ class MentorsController < ApplicationController
 
   post '/mentors' do
     #redirect_if_not_logged_in
-    set_user
-    if params[:mentor_description] != ""
+    #@user = current_user
+    if !!current_user && params[:mentor_description] != ""
+      @user = current_user
       @user.update(mentor_description: params[:mentor_description], location: params[:location], linked_in: params[:linked_in])
       @user.save!(validate: false)
       #flash[:message] = "Journal entry successfully created." if @journal_entry.id
@@ -35,13 +36,13 @@ class MentorsController < ApplicationController
 
 
   get '/mentors/:id' do
-    @mentor = User.find(params[:id])
+    @user = User.find(params[:id])
     erb :'/mentors/show'
   end
 
 
   get '/mentors/:id/edit' do
-    set_user
+    @user= current_user
     if authorized_to_edit?(params[:id])
       erb :'/mentors/edit'
     else
@@ -51,26 +52,36 @@ class MentorsController < ApplicationController
 
 
   patch '/mentors/:id' do
-    set_user
-    if params != ""
+    @user = current_user
+    if params[:mentor_description] != ""
     # 2. modify (update) the journal entry
       @user.update(name: params[:name],mentor_description: params[:mentor_description], location: params[:location], linked_in: params[:linked_in])
       # 3. redirect to show page
       @user.save!(validate: false)
       redirect "/mentors/#{@user.id}"
     else
-      redirect "mentors/#{current_user.id}/edit"
+      #redirect "mentors/#{current_user.id}/edit"
+      redirect "/"
     end
   end
 
-  
+#check this out - create a new user and password but in tux and test the whole flow
+  delete '/mentors/:id' do
+    if authorized_to_edit?(params[:id])
+    @user = current_user
+    @user.destroy
+    session.clear
+    #flash[:message] = "Successfully deleted that entry."
+    redirect '/'
+  else
+    redirect '/mentors/:id'
+    end
+  end
 
 
 
 private
 
-  def set_user
-    @user = User.find(session[:id])
-  end
+
 
 end
