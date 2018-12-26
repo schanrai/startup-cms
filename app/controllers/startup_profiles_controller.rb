@@ -6,6 +6,11 @@ class StartupProfilesController < ApplicationController
     erb :'/startups/index'
   end
 
+  get '/startups/:id' do
+    @startup = StartupProfile.find(params[:id])
+    erb :'/startups/show'
+  end
+
 
 
 

@@ -1,0 +1,31 @@
+<h2><%=@startup.name%></h2>
+
+<h3>Company Description:</h3>
+<p><%= @startup.description %></p>
+<br>
+
+<h3>Founded Date:</h3>
+<p><%= @startup.year_founded %></p>
+<br>
+
+<h3>Company Stage:</h3>
+<p><%= @startup.year_founded %></p>
+<br>
+
+<h3>Website:</h3>
+<p><a href="<%= @startup.website %>" target="_blank"><%= @startup.website %></a></p>
+<br>
+
+<h3>Need Help With:</h3>
+<p><%= @startup.help_needed %></p>
+<br>
+<br><br>
+
+<% if logged_in? %>
+  <a href="/startups/<%= @startup.id %>/edit">Edit Startup Profile</a>
+  <br><br>
+
+    <!-- Link to Logout -->
+
+
+<% end %>
