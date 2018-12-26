@@ -65,7 +65,7 @@ class MentorsController < ApplicationController
     end
   end
 
-#check this out - create a new user and password but in tux and test the whole flow
+
   delete '/mentors/:id' do
     if authorized_to_edit?(params[:id])
     @user = current_user

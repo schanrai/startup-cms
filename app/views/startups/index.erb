@@ -1,1 +1,10 @@
-"Hello world"
+<h1>Startups Index</h1>
+
+<% if !!logged_in? %>
+<p>Welcome <%= @user.name %>!</p>
+<% end %>
+
+<p><% @startups.each do |s|  %>
+
+<a href="/startups/<%= s.id %>"><%=s.name%></a><br>
+<% end %></p>
