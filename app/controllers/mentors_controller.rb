@@ -2,14 +2,14 @@ class MentorsController < ApplicationController
 
 
   get '/mentors' do
-    @user = current_user
+    @user = current_user if logged_in?
     @users = User.all
     erb :'/mentors/index'
   end
 
 
   get '/mentors/new' do
-    @user = current_user
+    @user = current_user if logged_in?
     if @user && @user.mentor_description.blank?
       erb :'/mentors/new'
     else
