@@ -10,7 +10,16 @@
 
 <h3>Linked In:</h3>
 <p><a href="<%= @user.linked_in %>" target="_blank"><%= @user.linked_in %></a></p>
+
 <br>
+
+<h3>Mentorships:</h3>
+<ul>
+  <%@user.mentorships.each do |startup|%>
+  <li><a href="/startups/<%= startup.id%>"><%= startup.name%></a></li>
+  <%end%>
+</ul>
+
 <br><br>
 
 <% if logged_in? %>
