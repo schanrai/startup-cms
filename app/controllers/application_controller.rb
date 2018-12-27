@@ -24,8 +24,6 @@ class ApplicationController < Sinatra::Base
     #memoization
     end
 
-
-
     def authorized_to_edit?(id)
       id.to_i == current_user.id
     end

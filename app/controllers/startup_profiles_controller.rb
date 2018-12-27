@@ -49,6 +49,7 @@ class StartupProfilesController < ApplicationController
     end
   end
 
+
   patch '/startups/:id' do
     #@user = current_user
     @startup = current_startup(params[:id])
@@ -63,7 +64,6 @@ class StartupProfilesController < ApplicationController
     end
 
 
-
   post '/startups/:id/addmentor' do
     #add logic to prevent the user that created the startup from becoming a mentor
     s = current_startup(params[:id])
@@ -73,6 +73,18 @@ class StartupProfilesController < ApplicationController
     redirect "/startups/#{params[:id]}"
   end
 
+
+  delete '/startups/:id' do
+    @startup = current_startup(params[:id])
+    if authorized_to_edit?(@startup.user_id)
+    @startup = current_startup(params[:id])
+    @startup.destroy
+    #flash[:message] = "Successfully deleted that entry."
+    redirect '/startups'
+  else
+    redirect "/startups/#{@startup.id}"
+    end
+  end
 
 
 

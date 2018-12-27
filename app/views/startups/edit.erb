@@ -47,3 +47,18 @@
 <input type="submit" value="submit">
 
 </form>
+<br>
+
+<a href="/startups/<%= @startup.id %>">View Startup Profile</a>
+<br><br>
+
+<% if authorized_to_edit?(@startup.user_id) %>
+<!-- they won't see the delete link unless they are the owner-->
+  <form class="" action="/startups/<%= @startup.id %>" method="post">
+
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete this profile">
+  </form>
+
+
+<% end %>

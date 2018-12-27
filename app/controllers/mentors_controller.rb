@@ -74,13 +74,13 @@ class MentorsController < ApplicationController
     #flash[:message] = "Successfully deleted that entry."
     redirect '/'
   else
-    redirect '/mentors/:id'
+    redirect "/mentors/#{@user.id}"
     end
   end
 
 
 
-private
+
 
 
 
