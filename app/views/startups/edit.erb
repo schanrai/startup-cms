@@ -10,15 +10,17 @@
 
 <label>Startup Description: </label>
 <textarea type="text" name="description" rows="5" cols="50">
+<%= @startup.description %>
+
 </textarea>
 
 <br></br>
 <label>Founding Year: </label>
-<input type="text" name="year_founded" value="">
+<input type="text" name="year_founded" value="<%= @startup.year_founded %>">
 
 <br></br>
 <label>Website: </label>
-<input type="text" name="website" value="">
+<input type="text" name="website" value="<%= @startup.website %>">
 
 <br></br>
 <p>Select your startup's lifecycle stage:</p
@@ -33,13 +35,12 @@
 
 <p>Select the areas from the list below where your startup needs help:</p>
 <p>
-<input type="radio" id="helpneeded1" name="help_needed" value="Operations">  Operations<br>
-<input type="radio" id="helpneeded2" name="help_needed" value="Funding">  Funding<br>
-<input type="radio" id="helpneeded3" name="help_needed" value="Product & Design">  Product & Design<br>
-<input type="radio" id="helpneeded4" name="help_needed" value="Marketing">  Marketing<br>
-<input type="radio" id="helpneeded5" name="help_needed" value="Technology">  Technology<br>
+<input type="radio" id="helpneeded1" name="help_needed" value="Operations" <%='checked' if @startup.help_needed == "Operations" %>>  Operations<br>
+<input type="radio" id="helpneeded2" name="help_needed" value="Funding"<%='checked' if @startup.help_needed == "Funding" %>>  Funding<br>
+<input type="radio" id="helpneeded3" name="help_needed" value="Product & Design"<%='checked' if @startup.help_needed == "Product & Design" %>>  Product & Design<br>
+<input type="radio" id="helpneeded4" name="help_needed" value="Marketing"<%='checked' if @startup.help_needed == "Marketing" %>>  Marketing<br>
+<input type="radio" id="helpneeded5" name="help_needed" value="Technology"<%='checked' if @startup.help_needed == "Technology" %>>  Technology<br>
 </p>
-
 
 
 <input type="submit" value="submit">
