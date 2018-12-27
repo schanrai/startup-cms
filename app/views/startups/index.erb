@@ -1,7 +1,7 @@
 <h1>Startups Index</h1>
 
 <% if !!logged_in? %>
-<p>Welcome <%= @user.name %>!</p>
+<p>Hello <%= @user.name %>!</p>
 <% end %>
 
 <p><% @startups.each do |s|  %>

@@ -1,7 +1,7 @@
 <h1>Mentors Index</h1>
 
 <% if !!logged_in? %>
-<p>Welcome <%= @user.name %>!</p>
+<p>Hello <%= @user.name %>!</p>
 <% end %>
 
 <p><% @users.find_all do |u|  %>
