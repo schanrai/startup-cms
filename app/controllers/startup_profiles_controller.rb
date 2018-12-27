@@ -67,10 +67,15 @@ class StartupProfilesController < ApplicationController
   post '/startups/:id/addmentor' do
     #add logic to prevent the user that created the startup from becoming a mentor
     s = current_startup(params[:id])
-    s.mentor_id = params[:mentor_id]
-    s.save
+    if session[:id] != s.user_id
+      s.mentor_id = params[:mentor_id]
+      s.save
     #flash message "you have successfully been assigned to mentor Startup X"
-    redirect "/startups/#{params[:id]}"
+      redirect "/startups/#{params[:id]}"
+    else
+      #flash message to say you cannot mentor your own startup
+     redirect "/startups/#{params[:id]}/edit"
+   end
   end
 
 
