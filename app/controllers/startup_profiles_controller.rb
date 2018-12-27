@@ -16,6 +16,7 @@ class StartupProfilesController < ApplicationController
     end
   end
 
+
   post '/startups' do
     if !!current_user && !params.blank?
       @startup = StartupProfile.create(name: params[:name],
@@ -29,10 +30,23 @@ class StartupProfilesController < ApplicationController
   end
 
 
+
   get '/startups/:id' do
     @user = current_user if logged_in?
     @startup = StartupProfile.find(params[:id])
     erb :'/startups/show'
+  end
+
+
+  get '/startups/:id/edit' do
+    @user = current_user
+    @startup = current_startup(params[:id])
+    if authorized_to_edit?(@startup.user_id)
+      erb :'/startups/edit'
+    else
+      #flash message?
+      redirect '/startups'
+    end
   end
 
 
