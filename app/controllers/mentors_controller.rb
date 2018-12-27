@@ -13,6 +13,7 @@ class MentorsController < ApplicationController
     if @user && @user.mentor_description.blank?
       erb :'/mentors/new'
     else
+      #flash message "you cannot create a new mentor profile, please check to see if you already have one"
       redirect '/mentors'
     end
   end

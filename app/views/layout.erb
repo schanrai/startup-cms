@@ -16,12 +16,13 @@
   <body>
     <div class="nav">
 
-  <a href="/mentors">Mentors</a>
-  <a href="/startups">Startups</a>
-  <% if logged_in? %>
-  <a href="/logout">Logout</a>
-  <% end %>
-</div>
+      <a href="/mentors">Mentors</a>
+      <a href="/startups">Startups</a>
+      <% if logged_in? %>
+      <a href="/logout">Logout</a>
+      <% end %>
+    </div>
+    
     <div class="wrapper">
 
         <%= yield %>

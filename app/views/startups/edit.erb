@@ -49,7 +49,7 @@
 </form>
 <br>
 
-<a href="/startups/<%= @startup.id %>">View Startup Profile</a>
+<a class="button" href="/startups/<%= @startup.id %>">View Startup Profile</a>
 <br><br>
 
 <% if authorized_to_edit?(@startup.user_id) %>
@@ -57,7 +57,7 @@
   <form class="" action="/startups/<%= @startup.id %>" method="post">
 
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete this profile">
+    <input type="submit" class="text-button" value="Delete Startup profile">
   </form>
 
 
