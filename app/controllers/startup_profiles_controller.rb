@@ -22,9 +22,9 @@ class StartupProfilesController < ApplicationController
         user_id: current_user.id, description: params[:description],
         year_founded: params[:year_founded],website: params[:website],
         stage: params[:stage], help_needed: params[:help_needed])
-      redirect '/startups'
+      redirect "/startups/#{@startup.id}"
     else
-      redirect '/mentors'
+      redirect '/startups/new'
     end
   end
 
