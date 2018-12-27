@@ -2,7 +2,8 @@
 
 <p><%= @user.name %>, edit your startup's profile below:</p>
 
-<form action="/startups" method="post">
+<form action="/startups/<%=@startup.id%>" method="post">
+<input type="hidden" name = "_method" value ="patch">
 
 <label>Startup Name: </label>
 <input type="text" name="name" value="<%= @startup.name %>">

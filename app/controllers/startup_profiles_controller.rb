@@ -49,6 +49,19 @@ class StartupProfilesController < ApplicationController
     end
   end
 
+  patch '/startups/:id' do
+    #@user = current_user
+    @startup = current_startup(params[:id])
+    # 2. modify (update) the journal entry
+    @startup.update(name: params[:name],
+    description: params[:description],
+    year_founded: params[:year_founded],website: params[:website],
+    stage: params[:stage], help_needed: params[:help_needed])
+      # 3. redirect to show page
+    @startup.save
+    redirect "/startups/#{@startup.id}"
+    end
+
 
 
   post '/startups/:id/addmentor' do
