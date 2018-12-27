@@ -1,0 +1,47 @@
+<h2>Create Startup Profile</h2>
+
+<p><%= @user.name %>, create your startup's profile below:</p>
+
+<form action="/startups" method="post">
+
+<label>Startup Name: </label>
+<input type="text" name="name" value="">
+<br></br>
+
+<label>Startup Description: </label>
+<textarea type="text" name="description" rows="5" cols="50">
+</textarea>
+
+<br></br>
+<label>Founding Year: </label>
+<input type="text" name="year_founded" value="">
+
+<br></br>
+<label>Website: </label>
+<input type="text" name="website" value="">
+
+<br></br>
+<p>Select your startup's lifecycle stage:</p
+<p>
+  <select name="stage">
+    <option value="Seed">Seed</option>
+    <option value="Early Stage">Early Stage</option>
+    <option value="Late Stage">Late Stage</option>
+
+  </select>
+</p>
+
+<p>Select the areas from the list below where your startup needs help:</p>
+<p>
+<input type="radio" id="helpneeded1" name="help_needed" value="Operations">  Operations<br>
+<input type="radio" id="helpneeded2" name="help_needed" value="Funding">  Funding<br>
+<input type="radio" id="helpneeded3" name="help_needed" value="Product & Design">  Product & Design<br>
+<input type="radio" id="helpneeded4" name="help_needed" value="Marketing">  Marketing<br>
+<input type="radio" id="helpneeded5" name="help_needed" value="Technology">  Technology<br>
+</p>
+
+
+
+<input type="submit" value="submit">
+
+</form>
