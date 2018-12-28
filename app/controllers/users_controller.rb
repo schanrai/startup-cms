@@ -42,7 +42,6 @@ class UsersController < ApplicationController
         end
       else
         flash[:errors] =  @user.errors.full_messages.to_sentence
-         #flash[:errors] = "Your email is most likely in use already. Please sign up with a va;id email and password."
       redirect '/signup'
       end
     end

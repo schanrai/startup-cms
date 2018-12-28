@@ -13,3 +13,8 @@
 <br></br>
 <a href="/mentors/new">Create Mentor Profile</a><br>
 <a href="/startups/new">Create Startup Profile</a><br>
+<form class="" action="/mentors/<%= @user.id %>" method="post">
+
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" class="text-button" value="Delete User Account">
+</form>

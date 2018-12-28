@@ -6,18 +6,18 @@
 <input type="hidden" name = "_method" value ="patch">
 
 <label>Startup Name: </label>
-<input type="text" name="name" value="<%= @startup.name %>">
+<input type="text" name="name" value="<%= @startup.name %>" required>
 <br></br>
 
 <label>Startup Description: </label>
-<textarea type="text" name="description" rows="5" cols="50">
+<textarea type="text" name="description" rows="5" cols="50" required>
 <%= @startup.description %>
 
 </textarea>
 
 <br></br>
 <label>Founding Year: </label>
-<input type="text" name="year_founded" value="<%= @startup.year_founded %>">
+<input type="text" name="year_founded" value="<%= @startup.year_founded %>" required>
 
 <br></br>
 <label>Website: </label>
