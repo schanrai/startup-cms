@@ -83,6 +83,19 @@
   }
 }
 
+  div.nav {
+    background: #fff;
+    border-bottom: 2px solid #e8e8e8;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+  .nav a {
+    margin: 0px 20px;
+    text-decoration: none;
+    color: #999;
+  }
+
          .button {
          background-color: #FF4500;
          border: none;

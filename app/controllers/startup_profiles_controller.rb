@@ -69,19 +69,6 @@ class StartupProfilesController < ApplicationController
     end
 
 
-  post '/startups/:id/addmentor' do
-    s = current_startup(params[:id])
-    if session[:id] != s.user_id
-      s.mentor_id = session[:id]
-      s.save
-      flash[:message] = "You have been assigned as a mentor to #{s.name}"
-      redirect "/startups/#{params[:id]}"
-    else
-      flash[:errors] = "You cannot mentor a startup that you submitted."
-     redirect "/startups"
-   end
-  end
-
 
   delete '/startups/:id' do
     @startup = current_startup(params[:id])
