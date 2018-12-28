@@ -24,17 +24,15 @@
 
 <% if has_mentor?(@startup) %>
 
-<h3>Mentor:</h3>
+  <h3>Mentor:</h3>
 
 
-<p><a href="/mentors/<%= @startup.mentor_id %>" target="_blank"><%= @startup.mentor.name %></a></p>
-<br>
+  <p><a href="/mentors/<%= @startup.mentor_id %>" target="_blank"><%= @startup.mentor.name %></a></p>
+  <br>
 <% else %>
 
 <h3>Need Help With:</h3>
 <p><%= @startup.help_needed %></p>
-
-
 
 <form action="/startups/<%= @startup.id %>/addmentor" method="post">
 

@@ -12,6 +12,7 @@ class StartupProfilesController < ApplicationController
     if @user
       erb :'/startups/new'
     else
+      flash[:message] = "You must be logged in to create a startup profile"
       redirect '/'
     end
   end
@@ -23,8 +24,10 @@ class StartupProfilesController < ApplicationController
         user_id: current_user.id, description: params[:description],
         year_founded: params[:year_founded],website: params[:website],
         stage: params[:stage], help_needed: params[:help_needed])
+      flash[:message] = "Startup profile successfully created." if @startup.description
       redirect "/startups"
     else
+      flash[:errors] =  @user.errors.full_messages.to_sentence
       redirect '/startups/new'
     end
   end
@@ -44,36 +47,37 @@ class StartupProfilesController < ApplicationController
     if authorized_to_edit?(@startup.user_id)
       erb :'/startups/edit'
     else
-      #flash message?
+      flash[:message] = "You can only edit a profile that you have created."
       redirect '/startups'
     end
   end
 
 
   patch '/startups/:id' do
-    #@user = current_user
     @startup = current_startup(params[:id])
-    # 2. modify (update) the journal entry
-    @startup.update(name: params[:name],
-    description: params[:description],
-    year_founded: params[:year_founded],website: params[:website],
-    stage: params[:stage], help_needed: params[:help_needed])
-      # 3. redirect to show page
-    @startup.save
-    redirect "/startups/#{@startup.id}"
+    if @startup
+      @startup.update(name: params[:name],
+        description: params[:description],
+        year_founded: params[:year_founded],website: params[:website],
+        stage: params[:stage], help_needed: params[:help_needed])
+        @startup.save
+        flash[:message] = "Profile updated successfully."
+        redirect "/startups/#{@startup.id}"
+    else
+      flash[:errors] = "Something went wrong: #{@startup.errors.full_messages.to_sentence}"
+      redirect "/startups/#{@startup.id}/edit"
     end
 
 
   post '/startups/:id/addmentor' do
-    #add logic to prevent the user that created the startup from becoming a mentor
     s = current_startup(params[:id])
     if session[:id] != s.user_id
       s.mentor_id = session[:id]
       s.save
-    #flash message "you have successfully been assigned to mentor Startup X"
+      flash[:message] = "You have been assigned as a mentor to #{s.name}"
       redirect "/startups/#{params[:id]}"
     else
-      #flash message to say you cannot mentor your own startup
+      flash[:errors] = "You cannot mentor a startup that you submitted."
      redirect "/startups"
    end
   end
@@ -82,12 +86,14 @@ class StartupProfilesController < ApplicationController
   delete '/startups/:id' do
     @startup = current_startup(params[:id])
     if authorized_to_edit?(@startup.user_id)
-    @startup = current_startup(params[:id])
-    @startup.destroy
-    #flash[:message] = "Successfully deleted that entry."
-    redirect '/startups'
-  else
-    redirect "/startups/#{@startup.id}"
+      @startup = current_startup(params[:id])
+      @startup.destroy
+      flash[:message] = "Successfully deleted that entry."
+      redirect '/startups'
+    else
+      flash[:errors] = "Something went wrong: #{@user.errors.full_messages.to_sentence}"
+      redirect "/startups/#{@startup.id}"
+      end
     end
   end
 

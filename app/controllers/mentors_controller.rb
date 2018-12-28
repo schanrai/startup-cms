@@ -52,14 +52,14 @@ class MentorsController < ApplicationController
 
   patch '/mentors/:id' do
     @user = current_user
-    #if params[:mentor_description] != " "
     if !params[:mentor_description].empty?
       @user.update(name: params[:name],mentor_description: params[:mentor_description],
         location: params[:location], linked_in: params[:linked_in])
       @user.save!(validate: false)
+      flash[:message] = "Profile updated successfully."
       redirect "/mentors/#{@user.id}"
     else
-      flash[:message] = "Something went wrong - you must provide content for your entry."
+      flash[:errors] = "Something went wrong: #{@user.errors.full_messages.to_sentence}"
       redirect "/mentors/#{@user.id}/edit"
     end
   end
@@ -73,7 +73,7 @@ class MentorsController < ApplicationController
     flash[:message] = "Successfully deleted that entry."
     redirect '/'
   else
-    flash[:message] = "Something went wrong - please try again."
+    flash[:errors] = "Something went wrong: #{@user.errors.full_messages.to_sentence}"
     redirect "/mentors/#{@user.id}"
     end
   end

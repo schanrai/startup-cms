@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def has_mentor?(startup)
-      !!startup.mentor_id
+      !!startup.mentor_id && startup.mentor_id != 0
     end
 
     def current_startup(id)
