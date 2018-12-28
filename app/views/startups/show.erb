@@ -16,6 +16,12 @@
 <p><a href="<%= @startup.website %>" target="_blank"><%= @startup.website %></a></p>
 <br>
 
+<h3>Submitted by:</h3>
+
+<p><a href="/mentors/<%= @startup.user_id %>" target="_blank"><% u = User.find(@startup.user_id) %><%= u.name %></a></p>
+<br>
+
+
 <% if has_mentor?(@startup) %>
 
 <h3>Mentor:</h3>
@@ -42,8 +48,4 @@
 <% if logged_in? %>
   <a href="/startups/<%= @startup.id %>/edit">Edit Startup Profile</a>
   <br><br>
-
-    <!-- Link to Logout -->
-
-
 <% end %>

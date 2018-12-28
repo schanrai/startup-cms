@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/login'
     else
-      #flash message needed here to acknowledge you are logged in
       redirect '/startups'
     end
   end
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
       session[:id] = user.id
       redirect '/startups'
     else
-      #flash message needed here on faiure
+      flash[:errors] = "Your credentials were invalid.  Please sign up or try again."
       redirect '/login'
     end
   end
@@ -27,7 +26,6 @@ class UsersController < ApplicationController
       !logged_in?
       erb :'/users/signup'
     else
-      #flash message needed here to acknowledge you are logged in
       redirect '/startups'
     end
   end
@@ -38,24 +36,22 @@ class UsersController < ApplicationController
       if @user.save
       session[:id] = @user.id
         if !!params[:yes]
-          #flash welcome message needed here to acknowledge you are signed up
           redirect "/mentors/new"
         else
-          #flash welcome message needed here to acknowledge you are signed up
           redirect "/startups"
         end
       else
-      #flash message about signup credentials being invalid, try again
-      #what about if user email already exists?
+        flash[:errors] =  @user.errors.full_messages.to_sentence
+         #flash[:errors] = "Your email is most likely in use already. Please sign up with a va;id email and password."
       redirect '/signup'
       end
-  end
+    end
 
 
-  get '/logout' do
-    session.clear
-    redirect '/'
-  end
+      get '/logout' do
+        session.clear
+        redirect '/'
+      end
 
 
 

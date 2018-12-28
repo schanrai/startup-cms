@@ -14,16 +14,24 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <div class="nav">
 
-      <a href="/mentors">Mentors</a>
-      <a href="/startups">Startups</a>
-      <% if logged_in? %>
-      <a href="/logout">Logout</a>
-      <% end %>
-    </div>
-    
+
     <div class="wrapper">
+      <div class="nav">
+        <a href="/">Home</a>
+        <a href="/mentors">Mentors</a>
+        <a href="/startups">Startups</a>
+        <% if logged_in? %>
+        <a href="/logout">Logout</a>
+        <% end %>
+      </div>
+
+      <% if flash[:message] %>
+      <p><%= flash[:message] %></p>
+      <% end %>
+      <% if flash[:errors] %>
+      <p style="color: red;"><%= flash[:errors] %></p>
+      <% end %>
 
         <%= yield %>
 
