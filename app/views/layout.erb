@@ -19,12 +19,21 @@
     <div class="wrapper">
 
       <div class="nav">
-        <a href="/">Home</a>
-        <a href="/mentors">Mentors</a>
-        <a href="/startups">Startups</a>
-        <% if logged_in? %>
-        <a href="/logout">Logout</a>
-        <% end %>
+
+        <div class="logo">
+          <a href="/">
+          <img border="0" src="https://visible.vc/wp-content/uploads/2015/08/producthuntlogo-300x54.png">
+          </a>
+        </div>
+
+        <div class = "nav-links">
+          <a href="/">Home</a>
+          <a href="/mentors">Mentors</a>
+          <a href="/startups">Startups</a>
+          <% if logged_in? %>
+          <a href="/logout">Logout</a>
+          <% end %>
+        </div>
       </div>
 
       <% if flash[:message] %>
