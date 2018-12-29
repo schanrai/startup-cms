@@ -1,24 +1,19 @@
 <h2>Create Mentor Profile</h2>
 
-<p><%= @user.name %>, create your mentor profile below:</p>
-
 <form action="/mentors" method="post">
+  <div class="form-group">
+    <label for="bio">About Me</label>
+    <textarea type="text" class="form-control" name="mentor_description" id="bio" rows="5" cols="50" required placeholder="Enter a short biography"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" name="location" class="form-control" required placeholder="Hollywood, CA USA">
+  </div>
+  <div class="form-group">
+    <label for="linkedIn">LinkedIn URL</label>
+    <input type="text" name="linked_in" value="" class="form-control" placeholder="http://www.linkedin.com/">
+  </div>
 
-<label>About Me: </label>
-<textarea type="text" name="mentor_description" rows="5" cols="50" required>
-</textarea>
-
-<br></br>
-<label>Location: </label>
-<input type="text" name="location" value="" required>
-
-<br></br>
-<label>Linked In: </label>
-<input type="text" name="linked_in" value="" >
-<br></br>
-
-<input type="submit" value="submit">
+  <input type="submit" class="btn btn-primary" value="Submit">
 
 </form>
-
-<br></br>

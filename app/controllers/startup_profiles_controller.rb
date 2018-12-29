@@ -1,9 +1,14 @@
 class StartupProfilesController < ApplicationController
 
   get '/startups' do
-    @user = current_user if logged_in?
-    @startups = StartupProfile.all
-    erb :'/startups/index'
+    if logged_in?
+      @user = current_user
+      @startups = StartupProfile.all
+      erb :'/startups/index'
+    else
+      flash[:message] = "You must be logged in to view startups"
+      redirect '/'
+    end
   end
 
 

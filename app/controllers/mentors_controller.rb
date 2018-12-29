@@ -2,9 +2,14 @@ class MentorsController < ApplicationController
 
 
   get '/mentors' do
-    @user = current_user if logged_in?
-    @users = User.all
-    erb :'/mentors/index'
+    if logged_in?
+      @user = current_user
+      @users = User.all
+      erb :'/mentors/index'
+    else
+      flash[:message] = "You must be logged in to view Mentors"
+      redirect '/'
+    end
   end
 
 

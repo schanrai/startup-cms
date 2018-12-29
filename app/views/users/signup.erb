@@ -1,14 +1,24 @@
 <h2>Sign Up</h2>
 <form action="/signup" method="POST">
-  <input type="text" name="name" placeholder="Full Name:">
-  <input type="text" name="email" placeholder="Email:">
-  <input type="text" name="password" placeholder="Password:">
-<br><br>
+  <div class="form-group">
+    <input type="text" class="form-control" name="name" id="fullname" aria-describedby="fullnameHelp" placeholder="Full Name">
+    <small id="fullnameHelp" class="form-text text-muted">First and last name</small>
+  </div>
+  <div class="form-group">
+    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email Address">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelp" placeholder="Password">
+    <small id="passwordHelp" class="form-text text-muted">Enter 6 to 8 characters.</small>
+  </div>
   <p>Would you like to setup your mentor profile?</p>
-  <input type="checkbox" id="yes" name="yes">
-  <label for="yes">Yes, I'd like to get started now</label>
-  <input type="checkbox" id="no" name="no">
-  <label for="no">No, maybe later.</label>
-  <br><br>
-  <input type="submit" value="Sign Up">
+  <div class="form-group">
+    <input type="checkbox" id="yes" name="yes">
+    <label for="yes">Yes, I'd like to get started now</label>
+    <input type="checkbox" id="no" name="no">
+    <label for="no">No, maybe later.</label>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Sign Up">
 </form>

@@ -4,17 +4,27 @@
 <p>Hello <%= @user.name %>!</p>
 <% end %>
 
-<p><% @users.find_all do |u|  %>
-<% if !!u.mentor_description %>
-<a href="/mentors/<%= u.id %>"><%=u.name%></a><br>
-<% end %>
-<% end %></p>
+<ul>
+  <% @users.find_all do |u| %>
+    <% if !!u.mentor_description %>
+      <li><a href="/mentors/<%= u.id %>"><%=u.name%></a></li>
+    <% end %>
+  <% end %>
+</ul>
 
-<br></br>
-<a href="/mentors/new">Create Mentor Profile</a><br>
-<a href="/startups/new">Create Startup Profile</a><br>
-<form class="" action="/mentors/<%= @user.id %>" method="post">
-
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" class="text-button" value="Delete User Account">
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-primary" href="/mentors/new">Create Mentor Profile</a><br>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" href="/startups/new">Create Startup Profile</a>
+    </div>
+    <div class="col">
+      <form class="" action="/mentors/<%= @user.id %>" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" class="btn btn-danger" value="Delete User Account">
+      </form>
+    </div>
+  </div>
+</div>
