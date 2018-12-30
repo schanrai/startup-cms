@@ -22,9 +22,9 @@
       <nav class="navbar navbar-expand-lg navbar-light">
        <a class="navbar-brand" href="/"><img border="0" src="https://visible.vc/wp-content/uploads/2015/08/producthuntlogo-300x54.png"></a>
        <ul class="navbar-nav ml-auto">
+         <% if logged_in? %>
         <li class="nav-item"><a class="nav-link" href="/mentors">Mentors</a></li>
         <li class="nav-item"><a class="nav-link" href="/startups">Startups</a></li>
-        <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.name%></a>
           <div class="dropdown-menu">
@@ -37,6 +37,8 @@
        </ul>
       </nav>
 
+      <div class="container">
+
       <% if flash[:message] %>
       <p style="color: green;"><%= flash[:message] %></p>
       <% end %>
@@ -46,17 +48,22 @@
 
       <%= yield %>
 
-      <footer class="branding">
-        <small>&copy; 2018 <strong>StartupCms</strong></small>
-      </footer>
-    </div>
+    
+      <div class="row justify-content-center branding">
+        <div class="col-2">
+          <footer>
+            <small>&copy; 2018 <strong>StartupCms</strong></small>
+          </footer>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- wrapper -->
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
-    <!--[if lt IE 7]>
-      <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-      <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-    <![endif]-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+  <!--[if lt IE 7]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+  <![endif]-->
   </body>
 </html>

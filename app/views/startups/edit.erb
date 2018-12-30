@@ -1,64 +1,83 @@
-<h2>Edit Startup Profile</h2>
+<div class="row">
+  <div class="col">
+    <h2>Edit Startup Profile</h2>
+  </div>
+</div>
 
-<p><%= @user.name %>, edit your startup's profile below:</p>
+<div class="row">
+  <div class="col">
+    <p>Edit your startup's profile below</p>
+  </div>
+</div>
 
 <form action="/startups/<%=@startup.id%>" method="post">
-<input type="hidden" name = "_method" value ="patch">
-
-<label>Startup Name: </label>
-<input type="text" name="name" value="<%= @startup.name %>" required>
-<br></br>
-
-<label>Startup Description: </label>
-<textarea type="text" name="description" rows="5" cols="50" required>
-<%= @startup.description %>
-
-</textarea>
-
-<br></br>
-<label>Founding Year: </label>
-<input type="text" name="year_founded" value="<%= @startup.year_founded %>" required>
-
-<br></br>
-<label>Website: </label>
-<input type="text" name="website" value="<%= @startup.website %>">
-
-<br></br>
-<p>Select your startup's lifecycle stage:</p
-<p>
-  <select name="stage">
-    <option value="Seed"  <%if @startup.stage == "Seed"%> selected<% end %>>Seed</option>
-    <option value="Early Stage" <%if @startup.stage == "Early Stage"%>selected<% end %>>Early Stage</option>
-    <option value="Late Stage" <%if @startup.stage == "Late Stage"%>selected<% end %>>Late Stage</option>
-
-  </select>
-</p>
-
-<p>Select the areas from the list below where your startup needs help:</p>
-<p>
-<input type="radio" id="helpneeded1" name="help_needed" value="Operations" <%='checked' if @startup.help_needed == "Operations" %>>  Operations<br>
-<input type="radio" id="helpneeded2" name="help_needed" value="Funding"<%='checked' if @startup.help_needed == "Funding" %>>  Funding<br>
-<input type="radio" id="helpneeded3" name="help_needed" value="Product & Design"<%='checked' if @startup.help_needed == "Product & Design" %>>  Product & Design<br>
-<input type="radio" id="helpneeded4" name="help_needed" value="Marketing"<%='checked' if @startup.help_needed == "Marketing" %>>  Marketing<br>
-<input type="radio" id="helpneeded5" name="help_needed" value="Technology"<%='checked' if @startup.help_needed == "Technology" %>>  Technology<br>
-</p>
-
-
-<input type="submit" value="submit">
-
+  <input type="hidden" name = "_method" value ="patch">
+  <div class="form-group">
+    <label for="startupname">Startup Name</label>
+    <input type="text" id="startupname" class="form-control" name="name" value="<%= @startup.name %>" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Startup Description</label>
+    <textarea id="description" class="form-control" name="description" rows="5" cols="50" required><%=@startup.description%></textarea>
+  </div>
+  <div class="form-group">
+    <label for="year">Founding Year</label>
+    <input type="text" id="year" class="form-control" name="year_founded" value="<%= @startup.year_founded %>" required>
+  </div>
+  <div class="form-group">
+    <label for="website">Website</label>
+    <input type="text" id="website" class="form-control" name="website" value="<%= @startup.website %>">
+  </div>
+  <div class="form-group">
+    <label for="seed">Select your startup's lifecycle stage</label>
+    <select name="stage" id="seed" class="form-control">
+      <option value="Seed" <%if @startup.stage == "Seed"%> selected<% end %>>Seed</option>
+      <option value="Early Stage" <%if @startup.stage == "Early Stage"%>selected<% end %>>Early Stage</option>
+      <option value="Late Stage" <%if @startup.stage == "Late Stage"%>selected<% end %>>Late Stage</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Select the area from the list below where your startup needs help</label>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="helpneeded1" name="help_needed" class="custom-control-input" value="Operations" <%='checked' if @startup.help_needed == "Operations" %>>
+      <label class="custom-control-label" for="helpneeded1">Operations</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="helpneeded2" name="help_needed" class="custom-control-input" value="Funding" <%='checked' if @startup.help_needed == "Funding" %>>
+      <label class="custom-control-label" for="helpneeded2">Funding</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="helpneeded3" name="help_needed" class="custom-control-input" value="Product & Design" <%='checked' if @startup.help_needed == "Product & Design" %>>
+      <label class="custom-control-label" for="helpneeded3">Product &amp; Design</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="helpneeded4" name="help_needed" class="custom-control-input" value="Marketing" <%='checked' if @startup.help_needed == "Marketing" %>>
+      <label class="custom-control-label" for="helpneeded4">Marketing</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="helpneeded5" name="help_needed" class="custom-control-input" value="Technology" <%='checked' if @startup.help_needed == "Technology" %>>
+      <label class="custom-control-label" for="helpneeded5">Technology</label>
+    </div>
+  </div> <!-- form-group -->
+  <div class="row">
+    <div class="col">
+      <input class="btn btn-primary" type="submit" value="Submit">
+      <a class="btn btn-secondary" href="/startups/<%=@startup.id %>">Cancel</a>
+    </div>
+  </div>
 </form>
-<br>
-
-<a class="button" href="/startups/<%= @startup.id %>">View Startup Profile</a>
-<br><br>
 
 <% if authorized_to_edit?(@startup.user_id) %>
 <!-- they won't see the delete link unless they are the owner-->
-  <form class="" action="/startups/<%= @startup.id %>" method="post">
-
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" class="text-button" value="Delete Startup profile">
-  </form>
+<br><br>
+<div class="row">
+  <div class="col">
+    <form action="/startups/<%= @startup.id %>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" class="btn btn-danger" value="Delete Startup Profile">
+    </form>
+  </div>
+</div>
 
 
 <% end %>

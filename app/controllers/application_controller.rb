@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
     else
       flash[:errors] = "You cannot mentor a startup that you submitted."
      redirect "/startups"
-   end
+    end
   end
 
   helpers do

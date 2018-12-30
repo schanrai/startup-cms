@@ -1,15 +1,25 @@
-<h1>Startups Index</h1>
-
-<% if !!logged_in? %>
-<p>Hello <%= @user.name %>!</p>
+<div class="row">
+  <div class="col">
+    <h2>Startups Index</h2>
+  </div>
+</div>
+<% @startups.each do |s| %>
+<div class="row">
+  <div class="col">
+    <a class="link-list-item" href="/startups/<%= s.id %>"><%=s.name%></a>
+  </div>
+</div>
 <% end %>
 
-<p><% @startups.each do |s|  %>
-
-<a href="/startups/<%= s.id %>"><%=s.name%></a><br>
-<% end %></p>
-
-<!--Dedicated link to view your own startups-->
-<br></br>
-<a href="/startups/new">Create Startup Profile</a><br>
-<a href="/mentors/new">Create Mentor Profile</a><br>
+<div class="button-stack">
+  <div class="row button-stack-item">
+    <div class="col">
+      <a class="btn btn-primary" href="/mentors/new">Create Mentor Profile</a><br>
+    </div>
+  </div>
+  <div class="row button-stack-item">
+    <div class="col">
+      <a class="btn btn-primary" href="/startups/new">Create Startup Profile</a>
+    </div>
+  </div>
+</div>

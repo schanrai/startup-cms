@@ -1,24 +1,33 @@
-<h2>Sign Up</h2>
-<form action="/signup" method="POST">
-  <div class="form-group">
-    <input type="text" class="form-control" name="name" id="fullname" aria-describedby="fullnameHelp" placeholder="Full Name">
-    <small id="fullnameHelp" class="form-text text-muted">First and last name</small>
+<div class="row">
+  <div class="col">
+    <h2>Sign Up</h2>
   </div>
-  <div class="form-group">
-    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email Address">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelp" placeholder="Password">
-    <small id="passwordHelp" class="form-text text-muted">Enter 6 to 8 characters.</small>
-  </div>
-  <p>Would you like to setup your mentor profile?</p>
-  <div class="form-group">
-    <input type="checkbox" id="yes" name="yes">
-    <label for="yes">Yes, I'd like to get started now</label>
-    <input type="checkbox" id="no" name="no">
-    <label for="no">No, maybe later.</label>
-  </div>
-
-  <input type="submit" class="btn btn-primary" value="Sign Up">
-</form>
+</div>
+<div class="row">
+  <div class="col">
+    <form action="/signup" method="POST">
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" class="form-control" name="name" id="fullname" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelp" required>
+        <small id="passwordHelp" class="form-text text-muted">Enter at least 6 characters.</small>
+      </div>
+      <p>Would you like to setup your mentor profile?</p>
+      <div class="form-group">
+        <input type="radio" id="yes" name="setup" value="yes">
+        <label for="yes">Yes, I'd like to get started now</label>
+        <input type="radio" id="no" name="setup" value="no">
+        <label for="no">No, maybe later.</label>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Submit"> <small class="text-muted">Already have an account? <a href="/login">Log in here</a>.</small>
+    </form>
+  </div> <!-- col -->
+</div> <!-- row -->

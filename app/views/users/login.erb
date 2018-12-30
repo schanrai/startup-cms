@@ -1,7 +1,20 @@
-<h2>Login</h2>
-<form action="/login" method="POST">
-  <input type="text" name="email" placeholder="Email:">
-  <input type="text" name="password" placeholder="Password:">
-
-  <input type="submit" value="submit">
-</form>
+<div class="row">
+  <div class="col">
+    <h2>Login</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+  <form action="/login" method="POST">
+    <div class="form-group">
+      <label for="email">Enter your email address</label>
+      <input type="text" class="form-control" name="email" id="email" required>
+    </div>
+    <div class="form-group">
+      <label form="password">Enter your password</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Log In"> <small class="text-muted">Need an account? <a href="/signup">Register here</a>.</small>
+  </form>
+  </div>
+</div>

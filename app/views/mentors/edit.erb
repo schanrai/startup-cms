@@ -1,43 +1,46 @@
-<h2>Edit Mentor Profile</h2>
+<div class="row">
+  <div class="col">
+    <h2>Edit Mentor Profile</h2>
+  </div>
+</div>
 
-<p><%= @user.name %>, edit your mentor profile below:</p>
+<div class="row">
+  <div class="col">
+    <p>Edit your mentor profile below.</p>
+  </div>
+</div>
 
 <form action="/mentors/<%=@user.id%>" method="post">
-<input type="hidden" name="_method" value="patch">
-
-<label>About Me: </label>
-<textarea type="text" name="mentor_description" rows="5" cols="50" required>
-<%= @user.mentor_description %>
-</textarea>
-
-<br></br>
-<label>Full Name: </label>
-<input type="text" name="name" value="<%=@user.name %>" required>
-
-
-<br></br>
-<label>Location: </label>
-<input type="text" name="location" value="<%=@user.location %>" required>
-
-<br></br>
-<label>Linked In: </label>
-<input type="text" name="linked_in" value="<%=@user.linked_in %>">
-<br></br>
-
-<input type="submit" value="submit">
-
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="description">About Me</label>
+    <textarea class="form-control" id="description" ame="mentor_description" rows="5" cols="50" required><%=@user.mentor_description%></textarea>
+  </div>
+  <div class="form-group">
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name" class="form-control" value="<%=@user.name%>" required>
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" class="form-control" value="<%=@user.location %>" required>
+  </div>
+  <div class="form-group">
+    <label for="linkedin">LinkedIn</label>
+    <input type="text" class="form-control" id="linkedin" name="linked_in" value="<%=@user.linked_in %>">
+  </div>
+  <div class="row">
+    <div class="col">
+      <input class="btn btn-primary" type="submit" value="Submit">
+      <a class="btn btn-secondary" href="/mentors/<%=@user.id %>">Cancel</a>
+    </div>
+  </div>
 </form>
-
-<br><br>
-
-<a href="/mentors/<%= @user.id %>">View Mentor Profile</a>
-<br><br>
 
 <% if authorized_to_edit?(@user.id) %>
 <!-- they won't see the delete link unless they are the owner-->
-  <form class="" action="/mentors/<%= @user.id %>" method="post">
-
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" class="text-button" value="Delete Mentor profile">
-  </form>
+<br><br>
+<form action="/mentors/<%=@user.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" class="btn btn-danger" value="Delete Mentor Profile">
+</form>
 <% end %>

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       @user = User.new(name: params[:name],email: params[:email],password: params[:password])
       if @user.save
       session[:id] = @user.id
-        if !!params[:yes]
+        if params[:setup] == "yes"
           redirect "/mentors/new"
         else
           redirect "/startups"

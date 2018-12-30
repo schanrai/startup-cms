@@ -1,30 +1,28 @@
-<h1>Mentors Index</h1>
+<div class="row">
+  <div class="col">
+    <h2>Mentors Index</h2>
+  </div>
+</div>
 
-<% if !!logged_in? %>
-<p>Hello <%= @user.name %>!</p>
+<% @users.find_all do |u| %>
+  <% if !!u.mentor_description %>
+    <div class="row">
+      <div class="col">
+        <a class="link-list-item" href="/mentors/<%= u.id %>"><%=u.name%></a>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
-<ul>
-  <% @users.find_all do |u| %>
-    <% if !!u.mentor_description %>
-      <li><a href="/mentors/<%= u.id %>"><%=u.name%></a></li>
-    <% end %>
-  <% end %>
-</ul>
-
-<div class="container">
-  <div class="row">
+<div class="button-stack">
+  <div class="row button-stack-item">
     <div class="col">
       <a class="btn btn-primary" href="/mentors/new">Create Mentor Profile</a><br>
     </div>
+  </div>
+  <div class="row button-stack-item">
     <div class="col">
       <a class="btn btn-primary" href="/startups/new">Create Startup Profile</a>
-    </div>
-    <div class="col">
-      <form class="" action="/mentors/<%= @user.id %>" method="post">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" class="btn btn-danger" value="Delete User Account">
-      </form>
     </div>
   </div>
 </div>

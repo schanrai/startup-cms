@@ -1,49 +1,66 @@
-<h2><%=@startup.name%></h2>
+<div class="row">
+  <div class="col">
+    <h2><%=@startup.name%></h2>
+  </div>
+</div>
 
-<h3>Company Description:</h3>
-<p><%= @startup.description %></p>
-<br>
+<div class="row">
+  <div class="col">
+    <strong>Company Description</strong>
+    <p><%=@startup.description %></p>
+  </div>
+</div>
 
-<h3>Founded Date:</h3>
-<p><%= @startup.year_founded %></p>
-<br>
+<div class="row">
+  <div class="col">
+    <strong>Founded Date</strong>
+    <p><%=@startup.year_founded%></p>
+  </div>
+</div>
 
-<h3>Company Stage:</h3>
-<p><%= @startup.stage %></p>
-<br>
+<div class="row">
+  <div class="col">
+    <strong>Company Stage</strong>
+    <p><%=@startup.stage%></p>
+  </div>
+</div>
 
-<h3>Website:</h3>
-<p><a href="<%= @startup.website %>" target="_blank"><%= @startup.website %></a></p>
-<br>
+<div class="row">
+  <div class="col">
+    <strong>Website</strong>
+    <p><a href="<%= @startup.website %>" target="_blank"><%= @startup.website %></a></p>
+  </div>
+</div>
 
-<h3>Submitted by:</h3>
+<div class="row">
+  <div class="col">
+    <strong>Submitted By</strong>
+    <p><a href="/mentors/<%=@startup.user_id%>" target="_blank"><% u = User.find(@startup.user_id) %><%=u.name%></a></p>
+  </div>
+</div>
 
-<p><a href="/mentors/<%= @startup.user_id %>" target="_blank"><% u = User.find(@startup.user_id) %><%= u.name %></a></p>
-<br>
+<div class="row">
+  <div class="col">
+    <% if has_mentor?(@startup) %>
+      <strong>Mentor</strong>
+      <p><a href="/mentors/<%= @startup.mentor_id %>" target="_blank"><%=@startup.mentor.name%></a></p>
+    <% else %>
+      <strong>Needs Help With</strong>
+      <p><%=@startup.help_needed%></p>
+    </div>
+  </div>
+  <div class="row button-stack-item">
+    <div class="col">
+      <form action="/startups/<%= @startup.id %>/addmentor" method="post">
+        <input class="btn btn-primary" type="submit" value="Mentor This Startup">
+      </form>
+    <!--Button to elect to mentor this startup - reloads or redirects back to this page -->
+    <% end %>
+  </div>
+</div>
 
-
-<% if has_mentor?(@startup) %>
-
-  <h3>Mentor:</h3>
-
-
-  <p><a href="/mentors/<%= @startup.mentor_id %>" target="_blank"><%= @startup.mentor.name %></a></p>
-  <br>
-<% else %>
-
-<h3>Need Help With:</h3>
-<p><%= @startup.help_needed %></p>
-
-<form action="/startups/<%= @startup.id %>/addmentor" method="post">
-
-   <input type="submit" value="Mentor this startup">
-</form>
-<br><br>
-<!--Button to elect to mentor this startup - reloads or redirects back to this page -->
-
-<% end %>
-
-<% if logged_in? %>
-  <a href="/startups/<%= @startup.id %>/edit">Edit Startup Profile</a>
-  <br><br>
-<% end %>
+<div class="row button-stack-item">
+  <div class="col">
+    <a class="btn btn-primary" href="/startups/<%=@startup.id %>/edit">Edit Startup Profile</a>
+  </div>
+</div>

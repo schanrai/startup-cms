@@ -1,23 +1,20 @@
-<div class="container">
-  <div class="col-md-8 col-md-offset-2">
+<div class="row">
+  <div class="col">
     <h2>Product Hunt South Florida Startup CMS</h2>
-
-    <div class="content">
-      <p>Welcome to the Product Hunt South Florida Startup CMS! </p>
-
-      <p>Want to pitch your startup at the next Product Hunt event? Signup and provide some information about your startup we will keep you notified of the next event in your area.
-      Want to mentor a startup in your local area? Create a mentor profile and select a startup from our comprehensive database.</p>
-
-      <% if !logged_in? %>
-      <p>What would you like to do next?</p>
-
-
-      <a href="/signup">Sign up</a> or <a href="/login">Log in</a>
-
-      <br><br>
-      <% end %>
-    </div>
-
-
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+  <p>Welcome to the Product Hunt South Florida Startup CMS!</p>
+  <p>Want to pitch your startup at the next Product Hunt event? Signup and provide some information about your startup we will keep you notified of the next event in your area.</p>
+  <p>Want to mentor a startup in your local area? Create a mentor profile and select a startup from our comprehensive database.</p>
+</div>
+</div>
+<div class="row">
+  <div class="col">
+  <% if !logged_in? %>
+  <p>What would you like to do next?<br><br>
+  <a class="btn btn-primary" href="/signup">Sign up</a> or <a class="btn btn-primary" href="/login">Log in</a></p>
+  <% end %>
   </div>
 </div>

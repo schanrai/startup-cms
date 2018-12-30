@@ -1,29 +1,45 @@
-<h2><%=@user.name%></h2>
+<div class="row">
+  <div class="col">
+    <h2><%=@user.name%></h2>
+  </div>
+</div>
 
-<h3>About Me:</h3>
-<p><%= @user.mentor_description %></p>
-<br>
+<div class="row">
+  <div class="col">
+    <strong>About Me</strong>
+    <p><%=@user.mentor_description%></p>
+  </div>
+</div>
 
-<h3>Location:</h3>
-<p><%= @user.location %></p>
-<br>
+<div class="row">
+  <div class="col">
+    <strong>Location</strong>
+    <p><%=@user.location%></p>
+  </div>
+</div>
 
-<h3>Linked In:</h3>
-<p><a href="<%= @user.linked_in %>" target="_blank"><%= @user.linked_in %></a></p>
+<div class="row">
+  <div class="col">
+    <strong>LinkedIn</strong>
+    <p><a href="<%=@user.linked_in%>" target="_blank"><%=@user.linked_in%></a></p>
+  </div>
+</div>
 
-<br>
+<div class="row">
+  <div class="col">
+    <strong>Mentorships</strong>
+    <%@user.mentorships.each do |startup|%>
+    <div class="row">
+      <div class="col">
+        <a class="link-list-item" href="/startups/<%=startup.id%>"><%=startup.name%></a>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>
 
-<h3>Mentorships:</h3>
-<ul>
-  <%@user.mentorships.each do |startup|%>
-  <li><a href="/startups/<%= startup.id%>"><%= startup.name%></a></li>
-  <%end%>
-</ul>
-
-<br><br>
-
-<% if logged_in? %>
-  <a href="/mentors/<%= @user.id %>/edit">Edit Mentor Profile</a>
-  <br><br>
-
-<% end %>
+<div class="row button-stack-item">
+  <div class="col">
+    <a class="btn btn-primary" href="/mentors/<%= @user.id %>/edit">Edit Mentor Profile</a>
+  </div>
+</div>

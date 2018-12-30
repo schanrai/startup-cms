@@ -38,12 +38,12 @@ class StartupProfilesController < ApplicationController
   end
 
 
-
   get '/startups/:id' do
     @user = current_user if logged_in?
     @startup = StartupProfile.find(params[:id])
     erb :'/startups/show'
   end
+
 
 
   get '/startups/:id/edit' do
@@ -56,6 +56,7 @@ class StartupProfilesController < ApplicationController
       redirect '/startups'
     end
   end
+
 
 
   patch '/startups/:id' do
@@ -72,23 +73,20 @@ class StartupProfilesController < ApplicationController
       flash[:errors] = "Something went wrong: #{@startup.errors.full_messages.to_sentence}"
       redirect "/startups/#{@startup.id}/edit"
     end
-
-
-
-  delete '/startups/:id' do
-    @startup = current_startup(params[:id])
-    if authorized_to_edit?(@startup.user_id)
-      @startup = current_startup(params[:id])
-      @startup.destroy
-      flash[:message] = "Successfully deleted that entry."
-      redirect '/startups'
-    else
-      flash[:errors] = "Something went wrong: #{@user.errors.full_messages.to_sentence}"
-      redirect "/startups/#{@startup.id}"
-      end
-    end
   end
 
 
+    delete '/startups/:id' do
+          @startup = current_startup(params[:id])
+        if authorized_to_edit?(@startup.user_id)
+          @startup = current_startup(params[:id])
+          @startup.destroy
+          flash[:message] = "Successfully deleted that entry."
+          redirect '/startups'
+        else
+          flash[:errors] = "Something went wrong: #{@user.errors.full_messages.to_sentence}"
+          redirect "/startups/#{@startup.id}"
+        end
+      end
 
 end
