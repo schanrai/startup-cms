@@ -7,7 +7,7 @@ class MentorsController < ApplicationController
       @users = User.all
       erb :'/mentors/index'
     else
-      flash[:message] = "You must be logged in to view Mentors"
+      flash[:errors] = "You must be logged in to view Mentors"
       redirect '/'
     end
   end
@@ -18,7 +18,7 @@ class MentorsController < ApplicationController
     if @user && @user.mentor_description.blank?
       erb :'/mentors/new'
     else
-      flash[:message] = "Mentor profile already exists" if !!@user.mentor_description
+      flash[:errors] = "Mentor profile already exists" if !!@user.mentor_description
       redirect '/mentors'
     end
   end
@@ -49,7 +49,7 @@ class MentorsController < ApplicationController
     if authorized_to_edit?(params[:id])
       erb :'/mentors/edit'
     else
-      flash[:message] = "You can only edit a profile that you have created."
+      flash[:errors] = "You can only edit a profile that you have created."
       redirect '/mentors'
     end
   end

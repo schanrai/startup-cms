@@ -17,7 +17,7 @@ class StartupProfilesController < ApplicationController
     if @user
       erb :'/startups/new'
     else
-      flash[:message] = "You must be logged in to create a startup profile"
+      flash[:errors] = "You must be logged in to create a startup profile"
       redirect '/'
     end
   end
@@ -52,7 +52,7 @@ class StartupProfilesController < ApplicationController
     if authorized_to_edit?(@startup.user_id)
       erb :'/startups/edit'
     else
-      flash[:message] = "You can only edit a profile that you have created."
+      flash[:errors] = "You can only edit a profile that you have created."
       redirect '/startups'
     end
   end
