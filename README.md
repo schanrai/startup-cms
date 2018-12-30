@@ -7,7 +7,7 @@ This is a simple Ruby app built with Sinatra that give users a database/director
 User have the ability to:
 - Create one or more directory entries for startups they are involved with (known as 'startup profiles')
 - Create mentor profiles for themselves. Only one mentor profile per user account can be created.
-- Appoint themselves as mentors to startups that are currenntly 'un-mentored'. Startups can be assigned to only one mentor at a time.
+- Appoint themselves as mentors to startups that are currently 'un-mentored'. Startups can be assigned to only one mentor at a time.
 - Edit or delete their own mentor profile.
 - Edit or delete startup profiles they have created as needed.
 - Browse all the mentor and startup profiles within the directory when logged in.
