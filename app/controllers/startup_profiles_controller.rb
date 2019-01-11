@@ -61,7 +61,7 @@ class StartupProfilesController < ApplicationController
 
   patch '/startups/:id' do
     @startup = current_startup(params[:id])
-    if @startup
+    if @startup && authorized_to_edit?(@startup.user_id)
       @startup.update(name: params[:name],
         description: params[:description],
         year_founded: params[:year_founded],website: params[:website],
